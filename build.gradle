@@ -1,0 +1,81 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    maven {
+        url 'http://172.16.1.56:8081/nexus/content/groups/public'
+    }
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+version '1.0.0-SNAPSHOT'
+group 'UtilTool'
+
+dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+
+    compile 'org.slf4j:slf4j-api:1.+'
+    compile 'log4j:log4j:1.2.9'
+    compile 'junit:junit:4.9'
+
+    compile 'com.alibaba:fastjson:1.+'
+    compile 'org.apache.commons:commons-lang3:3.+'
+    compile 'commons-codec:commons-codec:1.9'
+    compile 'org.bouncycastle:bcprov-jdk16:1.46'
+    compile 'pinyin4j:pinyin4j:2.5.0'
+
+    compile 'org.apache.poi:poi:3.8'
+    compile 'org.apache.poi:poi-ooxml:3.8'
+    compile 'org.apache.poi:poi-scratchpad:3.8'
+
+    compile 'org.apache.lucene:lucene-core:5.5.0'
+    compile 'org.apache.lucene:lucene-analyzers-common:5.5.0'
+    compile 'org.apache.lucene:lucene-queryparser:5.5.0'
+    compile 'org.apache.lucene:lucene-highlighter:5.5.0'
+
+
+    compile 'org.apache.httpcomponents:httpclient:4.5.1'
+    compile 'org.apache.httpcomponents:httpmime:4.5.1'
+    compile 'org.apache.httpcomponents:httpclient-cache:4.5.1'
+    compile 'org.apache.httpcomponents:fluent-hc:4.5.1'
+
+
+
+    compile 'com.rabbitmq:amqp-client:3.4.0'
+    compile 'redis.clients:jedis:2.+'
+
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+sourceSets {
+    main.java.srcDirs = ['src']
+    main.resources.srcDirs = ['src', 'resources']
+}
+
+webAppDirName = 'webapp'
+war {
+    baseName = "UtilTool"
+}
+
+configurations.all {
+    resolutionStrategy {
+        // don't cache changing modules at all
+        cacheChangingModulesFor 0, 'seconds'
+    }
+}
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: 'http://172.16.1.56:8081/nexus/content/groups/public') {
+//            authentication(userName: "deployment", password: "deployment")
+//        }
+//        // 上传到开发环境仓库
+//        snapshotRepository(url: 'http://172.16.1.56:8081/nexus/content/groups/public') {
+//            authentication(userName: "deployment", password: "deployment")
+//        }
+//    }
+//}
