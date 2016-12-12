@@ -55,6 +55,7 @@ public class RedisUtil {
 //                }
 //            }).start();
 //        }
-        RedisUtil.redis_key.delAll();
+        System.out.println(RedisUtil.redis_string.setnx("hello","hhhh"));
+        System.out.println(RedisUtil.redis_string.setnx("hello","hhhh"));
     }
 }
