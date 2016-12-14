@@ -28,24 +28,20 @@ public class RedisBase {
     static {
         try {
             if (pool == null) {
-                synchronized (RedisBase.class) {
-                    if (pool == null) {
-                        init();
-                        JedisPoolConfig config = new JedisPoolConfig();
-                        config.setMaxTotal(MAX_ACTIVE);
-                        config.setMaxIdle(MAX_IDLE);
-                        config.setMaxWaitMillis(MAX_WAIT);
-                        config.setTestOnBorrow(BORROW);
-                        pool = new JedisPool(config, HOST, PORT, TIMEOUT);
-                    }
-                }
+                init();
+                JedisPoolConfig config = new JedisPoolConfig();
+                config.setMaxTotal(MAX_ACTIVE);
+                config.setMaxIdle(MAX_IDLE);
+                config.setMaxWaitMillis(MAX_WAIT);
+                config.setTestOnBorrow(BORROW);
+                pool = new JedisPool(config, HOST, PORT, TIMEOUT);
             }
         } catch (Exception e) {
             logger.info("初始化redis连接异常");
         }
     }
 
-    private static synchronized void init() {
+    private static void init() {
         HOST = ReadProperties.getValue(config_path, "HOST");
         PORT = IntegerUtil.parseInt(ReadProperties.getValue(config_path, "PORT"));
         MAX_ACTIVE = IntegerUtil.parseInt(ReadProperties.getValue(config_path, "MAX_ACTIVE"));
@@ -57,7 +53,7 @@ public class RedisBase {
     /**
      * 获取连接
      */
-    public static synchronized Jedis getJedis() {
+    public static Jedis getJedis() {
         try {
             if (pool != null) {
                 return pool.getResource();

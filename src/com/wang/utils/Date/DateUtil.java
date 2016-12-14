@@ -73,8 +73,18 @@ public class DateUtil {
      * @param dateString
      * @return
      */
-    public static Date parse(String dateString) {
+    public static Date parseyyyyMMddHHmmss(String dateString) {
         return parse(dateString, DEFAULT_FULL_FORMATER);
+    }
+
+    /**
+     * 转换成日期(使用默认格式)
+     *
+     * @param dateString
+     * @return
+     */
+    public static Date parseyyyyMMdd(String dateString) {
+        return parse(dateString, DEFAULT_DATE_FORMATER);
     }
 
     /**
