@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 /**
  * 功能描述：关于字符串的一些实用操作
- *
  */
 public class StringUtil {
 
@@ -1284,5 +1283,9 @@ public class StringUtil {
         } catch (Exception e) {
             return "";
         }
+    }
+
+    public static String nullTotrim(Object str) {
+        return str == null ? "" : String.valueOf(str);
     }
 }

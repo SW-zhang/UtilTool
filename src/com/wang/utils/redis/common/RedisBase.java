@@ -18,7 +18,6 @@ public class RedisBase {
     private static int MAX_WAIT;// 最大连接时间
     private static int TIMEOUT;// 超时时间
 
-    private static String AUTH = "";// 密码(原始默认是没有密码)
     private static boolean BORROW = true;// 在borrow一个事例时是否提前进行validate操作
     private static JedisPool pool = null;
 

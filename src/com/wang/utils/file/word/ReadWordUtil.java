@@ -1,4 +1,4 @@
-package com.wang.utils.file;
+package com.wang.utils.file.word;
 
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.POIXMLTextExtractor;
