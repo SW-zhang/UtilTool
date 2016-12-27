@@ -1,7 +1,7 @@
 package test;
 
-import com.wang.utils.file.excel.ExcelObject;
-import com.wang.utils.file.excel.WriteExcelUtil;
+import com.services.utils.file.excel.ExcelObject;
+import com.services.utils.file.excel.WriteExcelUtil;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
