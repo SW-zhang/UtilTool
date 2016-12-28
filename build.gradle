@@ -69,6 +69,7 @@ configurations.all {
         cacheChangingModulesFor 0, 'seconds'
     }
 }
+//打包上传到maven库
 //uploadArchives {
 //    repositories.mavenDeployer {
 //        repository(url: 'http://172.16.1.56:8081/nexus/content/groups/public') {
@@ -80,3 +81,14 @@ configurations.all {
 //        }
 //    }
 //}
+
+//打可运行jar包
+task runnbaleJar(type: Jar) {
+
+    manifest {
+        attributes 'Main-Class': 'process.Main'
+    }
+    baseName = project.name + '-all'
+    from configurations.runtime.asFileTree.files.collect { zipTree(it) }
+    with jar
+}
