@@ -23,6 +23,7 @@ dependencies {
     compile 'junit:junit:4.9'
 
     compile 'com.alibaba:fastjson:1.+'
+//    compile 'com.netflix.feign:feign-jackson:8.18.0'
     compile 'org.apache.commons:commons-lang3:3.+'
     compile 'commons-codec:commons-codec:1.9'
     compile 'org.bouncycastle:bcprov-jdk16:1.46'
