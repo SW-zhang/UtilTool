@@ -2,9 +2,7 @@ package com.services.utils.file.excel;
 
 import java.util.List;
 
-/**
- * Created by wang on 2016/12/20.
- */
+
 public class ExcelObject {
     private String sheetName; //sheet名字
     private String[] title; //抬头

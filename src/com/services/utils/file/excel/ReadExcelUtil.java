@@ -1,5 +1,6 @@
 package com.services.utils.file.excel;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import java.util.List;
 
 /**
  * 读取excel工具类
- *
  */
 public class ReadExcelUtil {
     private static final Logger log = LoggerFactory.getLogger(ReadExcelUtil.class);
@@ -157,8 +157,13 @@ public class ReadExcelUtil {
                     result = cell.getStringCellValue();
                     break;
                 case Cell.CELL_TYPE_NUMERIC:
-                    cell.setCellType(Cell.CELL_TYPE_STRING);
-                    result = cell.getStringCellValue();
+//                    cell.setCellType(Cell.CELL_TYPE_STRING);
+                    if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                        //  如果是date类型则 ，获取该cell的date值
+                        result = HSSFDateUtil.getJavaDate(cell.getNumericCellValue()).toString();
+                    } else { // 纯数字
+                        result = String.valueOf(cell.getNumericCellValue());
+                    }
                     break;
                 case Cell.CELL_TYPE_BOOLEAN:
                     result = cell.getBooleanCellValue();
