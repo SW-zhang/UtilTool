@@ -5,14 +5,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 public class DateUtil {
 
     public static final String DEFAULT_FULL_FORMATER = "yyyy-MM-dd HH:mm:ss";
     public static final String DEFAULT_DATE_FORMATER = "yyyy-MM-dd";
 
+    private static final ThreadLocal<Map<String, SimpleDateFormat>> local = new ThreadLocal<>();
+
+
     private static SimpleDateFormat getSimpleDateFormat(String format, Locale locale) {
-        return new SimpleDateFormat(format, locale);
+        if (local.get().get(format) == null) {
+            local.get().put(format, new SimpleDateFormat(format, locale));
+        }
+
+        return local.get().get(format);
     }
 
     /**
