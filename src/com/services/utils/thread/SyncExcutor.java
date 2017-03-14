@@ -7,15 +7,19 @@ import java.util.concurrent.*;
  */
 public final class SyncExcutor {
 
-    private static final int corePoolSize = 8;//核心线程数量
-    private static final int maximumPoolSize = 32;//最大线程数量
+    private static final int corePoolSize = 100;//核心线程数量
+    private static final int maximumPoolSize = 1000;//最大线程数量
     private static final int CAPACITY = 1000;//队列任务最大数量
     private static final long keepAliveTime = 60L;//超过核心线程最大空闲时间，过了空闲时间就回收
 
-    // 创建线程池。线程池的"最大池大小"和"核心池大小"都为1(THREADS_SIZE)，"线程池"的阻塞队列容量为1(CAPACITY)。
     public static final ThreadPoolExecutor pool = new ThreadPoolExecutor(
             corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS,
             new ArrayBlockingQueue<Runnable>(CAPACITY));
+
+    static {
+        //是否允许核心线程空闲退出 默认false
+        pool.allowCoreThreadTimeOut(true);
+    }
 
     /***
      * 异步执行关心执行结果
