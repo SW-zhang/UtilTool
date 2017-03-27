@@ -20,9 +20,14 @@ public class SortSet {
      */
     public long zadd(String key, double score, String member) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.zadd(key, score, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.zadd(key, score, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -32,10 +37,15 @@ public class SortSet {
      * @return 如果返回0则集合不存在
      */
     public long zcard(String key) {
-        Jedis sjedis = RedisBase.getJedis();
-        long len = sjedis.zcard(key);
-        RedisBase.returnJedis(sjedis);
-        return len;
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.zcard(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -46,10 +56,15 @@ public class SortSet {
      * @param max 最大排序位置
      */
     public long zcount(String key, double min, double max) {
-        Jedis sjedis = RedisBase.getJedis();
-        long len = sjedis.zcount(key, min, max);
-        RedisBase.returnJedis(sjedis);
-        return len;
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.zcount(key, min, max);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -59,10 +74,7 @@ public class SortSet {
      * @return
      */
     public long zlength(String key) {
-        long len = 0;
-        Set<String> set = zrange(key, 0, -1);
-        len = set.size();
-        return len;
+        return zrange(key, 0, -1).size();
     }
 
     /**
@@ -75,9 +87,14 @@ public class SortSet {
      */
     public double zincrby(String key, double score, String member) {
         Jedis jedis = RedisBase.getJedis();
-        double s = jedis.zincrby(key, score, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        double redis_value;
+        try {
+            redis_value = jedis.zincrby(key, score, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -89,11 +106,15 @@ public class SortSet {
      * @return Set<String>
      */
     public Set<String> zrange(String key, int start, int end) {
+        Jedis jedis = RedisBase.getJedis();
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.zrange(key, start, end);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        Set<String> set = sjedis.zrange(key, start, end);
-        RedisBase.returnJedis(sjedis);
-        return set;
+        return redis_value;
     }
 
     /**
@@ -105,10 +126,15 @@ public class SortSet {
      * @return Set<String>
      */
     public Set<String> zrangeByScore(String key, double min, double max) {
-        Jedis sjedis = RedisBase.getJedis();
-        Set<String> set = sjedis.zrangeByScore(key, min, max);
-        RedisBase.returnJedis(sjedis);
-        return set;
+        Jedis jedis = RedisBase.getJedis();
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.zrangeByScore(key, min, max);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -119,11 +145,15 @@ public class SortSet {
      * @return long 位置
      */
     public long zrank(String key, String member) {
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.zrank(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        long index = sjedis.zrank(key, member);
-        RedisBase.returnJedis(sjedis);
-        return index;
+        return redis_value;
     }
 
     /**
@@ -134,11 +164,15 @@ public class SortSet {
      * @return long 位置
      */
     public long zrevrank(String key, String member) {
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.zrevrank(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        long index = sjedis.zrevrank(key, member);
-        RedisBase.returnJedis(sjedis);
-        return index;
+        return redis_value;
     }
 
     /**
@@ -150,9 +184,14 @@ public class SortSet {
      */
     public long zrem(String key, String member) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.zrem(key, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.zrem(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -163,9 +202,14 @@ public class SortSet {
      */
     public long zrem(String key) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.del(key);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.del(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -178,9 +222,14 @@ public class SortSet {
      */
     public long zremrangeByRank(String key, int start, int end) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.zremrangeByRank(key, start, end);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.zremrangeByRank(key, start, end);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -193,9 +242,14 @@ public class SortSet {
      */
     public long zremrangeByScore(String key, double min, double max) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.zremrangeByScore(key, min, max);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.zremrangeByScore(key, min, max);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -207,11 +261,15 @@ public class SortSet {
      * @return Set<String>
      */
     public Set<String> zrevrange(String key, int start, int end) {
+        Jedis jedis = RedisBase.getJedis();
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.zrevrange(key, start, end);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        Set<String> set = sjedis.zrevrange(key, start, end);
-        RedisBase.returnJedis(sjedis);
-        return set;
+        return redis_value;
     }
 
     /**
@@ -222,11 +280,14 @@ public class SortSet {
      * @return double 权重
      */
     public double zscore(String key, String memebr) {
-        Jedis sjedis = RedisBase.getJedis();
-        Double score = sjedis.zscore(key, memebr);
-        RedisBase.returnJedis(sjedis);
-        if (score != null)
-            return score;
-        return 0;
+        Jedis jedis = RedisBase.getJedis();
+        Double redis_value;
+        try {
+            redis_value = jedis.zscore(key, memebr);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value != null ? redis_value : 0;
     }
 }

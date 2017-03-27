@@ -19,16 +19,26 @@ public class Sets {
      */
     public long sadd(String key, String member) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.sadd(key, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.sadd(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     private long sadd(byte[] key, byte[] member) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.sadd(key, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.sadd(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -38,11 +48,15 @@ public class Sets {
      * @return 元素个数
      */
     public long scard(String key) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        long len = sjedis.scard(key);
-        RedisBase.returnJedis(sjedis);
-        return len;
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.scard(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -53,9 +67,14 @@ public class Sets {
      */
     public Set<String> sdiff(String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        Set<String> set = jedis.sdiff(keys);
-        RedisBase.returnJedis(jedis);
-        return set;
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.sdiff(keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -67,9 +86,14 @@ public class Sets {
      **/
     public long sdiffstore(String newkey, String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.sdiffstore(newkey, keys);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.sdiffstore(newkey, keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -80,9 +104,14 @@ public class Sets {
      **/
     public Set<String> sinter(String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        Set<String> set = jedis.sinter(keys);
-        RedisBase.returnJedis(jedis);
-        return set;
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.sinter(keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -94,9 +123,14 @@ public class Sets {
      **/
     public long sinterstore(String newkey, String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.sinterstore(newkey, keys);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.sinterstore(newkey, keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -107,11 +141,15 @@ public class Sets {
      * @return 存在返回1，不存在返回0
      **/
     public boolean sismember(String key, String member) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        boolean s = sjedis.sismember(key, member);
-        RedisBase.returnJedis(sjedis);
-        return s;
+        Jedis jedis = RedisBase.getJedis();
+        boolean redis_value;
+        try {
+            redis_value = jedis.sismember(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -121,19 +159,27 @@ public class Sets {
      * @return 成员集合
      */
     public Set<String> smembers(String key) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        Set<String> set = sjedis.smembers(key);
-        RedisBase.returnJedis(sjedis);
-        return set;
+        Jedis jedis = RedisBase.getJedis();
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.smembers(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     private Set<byte[]> smembers(byte[] key) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        Set<byte[]> set = sjedis.smembers(key);
-        RedisBase.returnJedis(sjedis);
-        return set;
+        Jedis jedis = RedisBase.getJedis();
+        Set<byte[]> redis_value;
+        try {
+            redis_value = jedis.smembers(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -148,9 +194,14 @@ public class Sets {
      */
     public long smove(String srckey, String dstkey, String member) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.smove(srckey, dstkey, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.smove(srckey, dstkey, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -161,9 +212,14 @@ public class Sets {
      */
     public String spop(String key) {
         Jedis jedis = RedisBase.getJedis();
-        String s = jedis.spop(key);
-        RedisBase.returnJedis(jedis);
-        return s;
+        String redis_value;
+        try {
+            redis_value = jedis.spop(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -175,9 +231,14 @@ public class Sets {
      */
     public long srem(String key, String member) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.srem(key, member);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.srem(key, member);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -188,9 +249,14 @@ public class Sets {
      */
     public Set<String> sunion(String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        Set<String> set = jedis.sunion(keys);
-        RedisBase.returnJedis(jedis);
-        return set;
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.sunion(keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -201,8 +267,13 @@ public class Sets {
      **/
     public long sunionstore(String newkey, String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.sunionstore(newkey, keys);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.sunionstore(newkey, keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 }

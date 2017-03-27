@@ -21,16 +21,26 @@ public class Hash {
      */
     public long hdel(String key, String fieid) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.hdel(key, fieid);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.hdel(key, fieid);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     public long hdel(String key) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.del(key);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.del(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -41,11 +51,15 @@ public class Hash {
      * @return 1存在，0不存在
      */
     public boolean hexists(String key, String fieid) {
+        Jedis jedis = RedisBase.getJedis();
+        boolean redis_value;
+        try {
+            redis_value = jedis.hexists(key, fieid);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        boolean s = sjedis.hexists(key, fieid);
-        RedisBase.returnJedis(sjedis);
-        return s;
+        return redis_value;
     }
 
     /**
@@ -56,19 +70,27 @@ public class Hash {
      * @return 存储对应的值
      */
     public String hget(String key, String fieid) {
+        Jedis jedis = RedisBase.getJedis();
+        String redis_value;
+        try {
+            redis_value = jedis.hget(key, fieid);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        String s = sjedis.hget(key, fieid);
-        RedisBase.returnJedis(sjedis);
-        return s;
+        return redis_value;
     }
 
     private byte[] hget(byte[] key, byte[] fieid) {
+        Jedis jedis = RedisBase.getJedis();
+        byte[] redis_value;
+        try {
+            redis_value = jedis.hget(key, fieid);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        byte[] s = sjedis.hget(key, fieid);
-        RedisBase.returnJedis(sjedis);
-        return s;
+        return redis_value;
     }
 
     /**
@@ -78,11 +100,15 @@ public class Hash {
      * @return Map<Strinig,String>
      */
     public Map<String, String> hgetAll(String key) {
+        Jedis jedis = RedisBase.getJedis();
+        Map<String, String> redis_value;
+        try {
+            redis_value = jedis.hgetAll(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        Map<String, String> map = sjedis.hgetAll(key);
-        RedisBase.returnJedis(sjedis);
-        return map;
+        return redis_value;
     }
 
     /**
@@ -95,16 +121,26 @@ public class Hash {
      **/
     public long hset(String key, String fieid, String value) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.hset(key, fieid, value);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.hset(key, fieid, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     private long hset(String key, String fieid, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.hset(key.getBytes(), fieid.getBytes(), value);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.hset(key.getBytes(), fieid.getBytes(), value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -117,9 +153,14 @@ public class Hash {
      **/
     public long hsetnx(String key, String fieid, String value) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.hsetnx(key, fieid, value);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.hsetnx(key, fieid, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -129,11 +170,15 @@ public class Hash {
      * @return List<String>
      */
     public List<String> hvals(String key) {
+        Jedis jedis = RedisBase.getJedis();
+        List<String> redis_value;
+        try {
+            redis_value = jedis.hvals(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        List<String> list = sjedis.hvals(key);
-        RedisBase.returnJedis(sjedis);
-        return list;
+        return redis_value;
     }
 
     /**
@@ -146,9 +191,14 @@ public class Hash {
      */
     public long hincrby(String key, String fieid, long value) {
         Jedis jedis = RedisBase.getJedis();
-        long s = jedis.hincrBy(key, fieid, value);
-        RedisBase.returnJedis(jedis);
-        return s;
+        long redis_value;
+        try {
+            redis_value = jedis.hincrBy(key, fieid, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -158,11 +208,15 @@ public class Hash {
      * @return Set<String> 存储名称的集合
      */
     public Set<String> hkeys(String key) {
+        Jedis jedis = RedisBase.getJedis();
+        Set<String> redis_value;
+        try {
+            redis_value = jedis.hkeys(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        Set<String> set = sjedis.hkeys(key);
-        RedisBase.returnJedis(sjedis);
-        return set;
+        return redis_value;
     }
 
     /**
@@ -172,11 +226,15 @@ public class Hash {
      * @return long 存储的个数
      */
     public long hlen(String key) {
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.hlen(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        long len = sjedis.hlen(key);
-        RedisBase.returnJedis(sjedis);
-        return len;
+        return redis_value;
     }
 
     /**
@@ -187,19 +245,27 @@ public class Hash {
      * @return List<String>
      */
     public List<String> hmget(String key, String... fieids) {
+        Jedis jedis = RedisBase.getJedis();
+        List<String> redis_value;
+        try {
+            redis_value = jedis.hmget(key, fieids);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        List<String> list = sjedis.hmget(key, fieids);
-        RedisBase.returnJedis(sjedis);
-        return list;
+        return redis_value;
     }
 
     private List<byte[]> hmget(byte[] key, byte[]... fieids) {
+        Jedis jedis = RedisBase.getJedis();
+        List<byte[]> redis_value;
+        try {
+            redis_value = jedis.hmget(key, fieids);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
 
-        Jedis sjedis = RedisBase.getJedis();
-        List<byte[]> list = sjedis.hmget(key, fieids);
-        RedisBase.returnJedis(sjedis);
-        return list;
+        return redis_value;
     }
 
     /**
@@ -211,9 +277,14 @@ public class Hash {
      */
     public String hmset(String key, Map<String, String> map) {
         Jedis jedis = RedisBase.getJedis();
-        String s = jedis.hmset(key, map);
-        RedisBase.returnJedis(jedis);
-        return s;
+        String redis_value;
+        try {
+            redis_value = jedis.hmset(key, map);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -225,9 +296,14 @@ public class Hash {
      */
     private String hmset(byte[] key, Map<byte[], byte[]> map) {
         Jedis jedis = RedisBase.getJedis();
-        String s = jedis.hmset(key, map);
-        RedisBase.returnJedis(jedis);
-        return s;
+        String redis_value;
+        try {
+            redis_value = jedis.hmset(key, map);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
 }

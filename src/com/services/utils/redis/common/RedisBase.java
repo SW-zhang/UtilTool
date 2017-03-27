@@ -58,11 +58,11 @@ public class RedisBase {
                 return pool.getResource();
             } else {
                 logger.info("连接池未被初始化");
-                return null;
+                throw new NullPointerException("连接池未被初始化");
             }
         } catch (Exception e) {
             logger.info("连接池连接异常");
-            return null;
+            throw e;
         }
 
     }

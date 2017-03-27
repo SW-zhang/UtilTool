@@ -28,11 +28,15 @@ public class Lists {
      * @return 长度
      */
     private long llen(byte[] key) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        long count = sjedis.llen(key);
-        RedisBase.returnJedis(sjedis);
-        return count;
+        Jedis jedis = RedisBase.getJedis();
+        long redis_value;
+        try {
+            redis_value = jedis.llen(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -45,9 +49,14 @@ public class Lists {
      */
     private String lset(byte[] key, int index, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        String status = jedis.lset(key, index, value);
-        RedisBase.returnJedis(jedis);
-        return status;
+        String redis_value;
+        try {
+            redis_value = jedis.lset(key, index, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -87,12 +96,16 @@ public class Lists {
      * @param value 插入的内容
      * @return 记录总数
      */
-    private long linsert(byte[] key, BinaryClient.LIST_POSITION where, byte[] pivot,
-                        byte[] value) {
+    private long linsert(byte[] key, BinaryClient.LIST_POSITION where, byte[] pivot, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        long count = jedis.linsert(key, where, pivot, value);
-        RedisBase.returnJedis(jedis);
-        return count;
+        long redis_value;
+        try {
+            redis_value = jedis.linsert(key, where, pivot, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -114,11 +127,15 @@ public class Lists {
      * @return 值
      **/
     private byte[] lindex(byte[] key, int index) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        byte[] value = sjedis.lindex(key, index);
-        RedisBase.returnJedis(sjedis);
-        return value;
+        Jedis jedis = RedisBase.getJedis();
+        byte[] redis_value;
+        try {
+            redis_value = jedis.lindex(key, index);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -139,9 +156,14 @@ public class Lists {
      */
     private byte[] lpop(byte[] key) {
         Jedis jedis = RedisBase.getJedis();
-        byte[] value = jedis.lpop(key);
-        RedisBase.returnJedis(jedis);
-        return value;
+        byte[] redis_value;
+        try {
+            redis_value = jedis.lpop(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -152,9 +174,14 @@ public class Lists {
      */
     public String rpop(String key) {
         Jedis jedis = RedisBase.getJedis();
-        String value = jedis.rpop(key);
-        RedisBase.returnJedis(jedis);
-        return value;
+        String redis_value;
+        try {
+            redis_value = jedis.rpop(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -177,9 +204,14 @@ public class Lists {
      */
     public long rpush(String key, String value) {
         Jedis jedis = RedisBase.getJedis();
-        long count = jedis.rpush(key, value);
-        RedisBase.returnJedis(jedis);
-        return count;
+        long redis_value;
+        try {
+            redis_value = jedis.rpush(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -191,9 +223,14 @@ public class Lists {
      */
     private long rpush(byte[] key, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        long count = jedis.rpush(key, value);
-        RedisBase.returnJedis(jedis);
-        return count;
+        long redis_value;
+        try {
+            redis_value = jedis.rpush(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -205,9 +242,14 @@ public class Lists {
      */
     private long lpush(byte[] key, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        long count = jedis.lpush(key, value);
-        RedisBase.returnJedis(jedis);
-        return count;
+        long redis_value;
+        try {
+            redis_value = jedis.lpush(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -219,11 +261,15 @@ public class Lists {
      * @return List
      */
     public List<String> lrange(String key, long start, long end) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        List<String> list = sjedis.lrange(key, start, end);
-        RedisBase.returnJedis(sjedis);
-        return list;
+        Jedis jedis = RedisBase.getJedis();
+        List<String> redis_value;
+        try {
+            redis_value = jedis.lrange(key, start, end);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -235,11 +281,15 @@ public class Lists {
      * @return List
      */
     private List<byte[]> lrange(byte[] key, int start, int end) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        List<byte[]> list = sjedis.lrange(key, start, end);
-        RedisBase.returnJedis(sjedis);
-        return list;
+        Jedis jedis = RedisBase.getJedis();
+        List<byte[]> redis_value;
+        try {
+            redis_value = jedis.lrange(key, start, end);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -252,9 +302,14 @@ public class Lists {
      */
     private long lrem(byte[] key, int c, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        long count = jedis.lrem(key, c, value);
-        RedisBase.returnJedis(jedis);
-        return count;
+        long redis_value;
+        try {
+            redis_value = jedis.lrem(key, c, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -279,9 +334,14 @@ public class Lists {
      */
     private String ltrim(byte[] key, int start, int end) {
         Jedis jedis = RedisBase.getJedis();
-        String str = jedis.ltrim(key, start, end);
-        RedisBase.returnJedis(jedis);
-        return str;
+        String redis_value;
+        try {
+            redis_value = jedis.ltrim(key, start, end);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**

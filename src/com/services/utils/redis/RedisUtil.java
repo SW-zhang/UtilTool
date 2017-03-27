@@ -55,7 +55,11 @@ public class RedisUtil {
 //                }
 //            }).start();
 //        }
-        System.out.println(RedisUtil.redis_string.setnx("hello","hhhh"));
-        System.out.println(RedisUtil.redis_string.setnx("hello","hhhh"));
+//        System.out.println(RedisUtil.redis_string.setnx("hello","hhhh"));
+//        System.out.println(RedisUtil.redis_string.setnx("hello","hhhh"));
+
+        Strings ss1 = RedisUtil.redis_string;
+        Strings ss2 = RedisUtil.redis_string;
+        System.out.println(ss1 == ss2);
     }
 }

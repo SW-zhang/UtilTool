@@ -10,6 +10,7 @@ import java.util.List;
  * 对存储结构为String类型的操作
  */
 public class Strings {
+
     /**
      * 根据key获取记录
      *
@@ -17,10 +18,15 @@ public class Strings {
      * @return 值
      */
     public String get(String key) {
-        Jedis sjedis = RedisBase.getJedis();
-        String value = sjedis.get(key);
-        RedisBase.returnJedis(sjedis);
-        return value;
+        Jedis jedis = RedisBase.getJedis();
+        String redis_value;
+        try {
+            redis_value = jedis.get(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -30,10 +36,15 @@ public class Strings {
      * @return 值
      */
     private byte[] get(byte[] key) {
-        Jedis sjedis = RedisBase.getJedis();
-        byte[] value = sjedis.get(key);
-        RedisBase.returnJedis(sjedis);
-        return value;
+        Jedis jedis = RedisBase.getJedis();
+        byte[] redis_value;
+        try {
+            redis_value = jedis.get(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -46,9 +57,14 @@ public class Strings {
      */
     public String setEx(String key, int seconds, String value) {
         Jedis jedis = RedisBase.getJedis();
-        String str = jedis.setex(key, seconds, value);
-        RedisBase.returnJedis(jedis);
-        return str;
+        String redis_value;
+        try {
+            redis_value = jedis.setex(key, seconds, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -61,9 +77,14 @@ public class Strings {
      */
     private String setEx(byte[] key, int seconds, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        String str = jedis.setex(key, seconds, value);
-        RedisBase.returnJedis(jedis);
-        return str;
+        String redis_value;
+        try {
+            redis_value = jedis.setex(key, seconds, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -75,9 +96,14 @@ public class Strings {
      */
     public long setnx(String key, String value) {
         Jedis jedis = RedisBase.getJedis();
-        long str = jedis.setnx(key, value);
-        RedisBase.returnJedis(jedis);
-        return str;
+        long redis_value;
+        try {
+            redis_value = jedis.setnx(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -111,9 +137,15 @@ public class Strings {
      */
     private String set(byte[] key, byte[] value) {
         Jedis jedis = RedisBase.getJedis();
-        String status = jedis.set(key, value);
-        RedisBase.returnJedis(jedis);
-        return status;
+        String redis_value;
+        try {
+            redis_value = jedis.set(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
+
     }
 
     /**
@@ -128,9 +160,14 @@ public class Strings {
      */
     public long setRange(String key, long offset, String value) {
         Jedis jedis = RedisBase.getJedis();
-        long len = jedis.setrange(key, offset, value);
-        RedisBase.returnJedis(jedis);
-        return len;
+        long redis_value;
+        try {
+            redis_value = jedis.setrange(key, offset, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -142,9 +179,14 @@ public class Strings {
      **/
     public long append(String key, String value) {
         Jedis jedis = RedisBase.getJedis();
-        long len = jedis.append(key, value);
-        RedisBase.returnJedis(jedis);
-        return len;
+        long redis_value;
+        try {
+            redis_value = jedis.append(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -156,9 +198,14 @@ public class Strings {
      */
     public long decrBy(String key, long number) {
         Jedis jedis = RedisBase.getJedis();
-        long len = jedis.decrBy(key, number);
-        RedisBase.returnJedis(jedis);
-        return len;
+        long redis_value;
+        try {
+            redis_value = jedis.decrBy(key, number);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -171,9 +218,14 @@ public class Strings {
      */
     public long incrBy(String key, long number) {
         Jedis jedis = RedisBase.getJedis();
-        long len = jedis.incrBy(key, number);
-        RedisBase.returnJedis(jedis);
-        return len;
+        long redis_value;
+        try {
+            redis_value = jedis.incrBy(key, number);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -185,11 +237,15 @@ public class Strings {
      * @return String 截取的值
      */
     public String getrange(String key, long startOffset, long endOffset) {
-        
-        Jedis sjedis = RedisBase.getJedis();
-        String value = sjedis.getrange(key, startOffset, endOffset);
-        RedisBase.returnJedis(sjedis);
-        return value;
+        Jedis jedis = RedisBase.getJedis();
+        String redis_value;
+        try {
+            redis_value = jedis.getrange(key, startOffset, endOffset);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -202,9 +258,14 @@ public class Strings {
      */
     public String getSet(String key, String value) {
         Jedis jedis = RedisBase.getJedis();
-        String str = jedis.getSet(key, value);
-        RedisBase.returnJedis(jedis);
-        return str;
+        String redis_value;
+        try {
+            redis_value = jedis.getSet(key, value);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -215,9 +276,14 @@ public class Strings {
      */
     public List<String> mget(String... keys) {
         Jedis jedis = RedisBase.getJedis();
-        List<String> str = jedis.mget(keys);
-        RedisBase.returnJedis(jedis);
-        return str;
+        List<String> redis_value;
+        try {
+            redis_value = jedis.mget(keys);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -228,9 +294,14 @@ public class Strings {
      */
     public String mset(String... keysvalues) {
         Jedis jedis = RedisBase.getJedis();
-        String str = jedis.mset(keysvalues);
-        RedisBase.returnJedis(jedis);
-        return str;
+        String redis_value;
+        try {
+            redis_value = jedis.mset(keysvalues);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 
     /**
@@ -241,8 +312,13 @@ public class Strings {
      */
     public long strlen(String key) {
         Jedis jedis = RedisBase.getJedis();
-        long len = jedis.strlen(key);
-        RedisBase.returnJedis(jedis);
-        return len;
+        long redis_value;
+        try {
+            redis_value = jedis.strlen(key);
+        } finally {
+            RedisBase.returnJedis(jedis);
+        }
+
+        return redis_value;
     }
 }
