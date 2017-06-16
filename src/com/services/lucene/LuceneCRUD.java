@@ -77,10 +77,11 @@ public class LuceneCRUD {
      *
      * @param keyword   搜索关键字
      * @param highlight 是否高亮
+     * @param itemClass 实体class
      * @return
      */
-    public static List<Item> search(String keyword, Boolean highlight) {
-        return search(keyword, LuceneConfig.getLuceneSearchFields().split(","), Item.class, highlight);
+    public static <T> List<T> search(String keyword, Boolean highlight, Class<T> itemClass) {
+        return search(keyword, LuceneConfig.getLuceneSearchFields().split(","), itemClass, highlight);
     }
 
     /**
@@ -88,7 +89,7 @@ public class LuceneCRUD {
      *
      * @param keyword     搜索关键字
      * @param queryFields 查询域
-     * @param clazz
+     * @param clazz       实体class
      * @param highlight   是否高亮
      * @return
      */
